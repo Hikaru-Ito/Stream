@@ -1,0 +1,13 @@
+node_modules/
+platforms/
+plugins/
+engine/
+android.keystore
+.DS_Store
+www/*.html
+www/**/*.html
+www/js/
+www/css/
+npm-debug.log
+zipalign
+.editorconfig

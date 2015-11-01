@@ -1,0 +1,21 @@
+ion-view
+  
+  ion-header-bar(class='bar-light')
+    h1(class='title') Stream
+    button(class='button button-icon icon ion-ios-refresh-empty' ng-click='initSeedFeed()')
+    
+  
+  ion-content(scroll='false')
+  
+    
+    div(id='topSlider' class='swiper-container')
+      div(class='swiper-wrapper')
+        div(class='seed-feed swiper-slide' ng-repeat='seedFeed in seedFeeds' end-repeat='' on-hold='openPage({{seedFeed}})')
+          div(class='title') {{seedFeed.title}}
+          div(class='background' style='background:url({{seedFeed.image}}) center center no-repeat; background-size:cover;')
+      
+    ion-scroll(direction='y' id='middleScrollView' on-swipe-left='seedFeedNext()' on-swipe-right='seedFeedPrev()')
+      div(class='feeds')
+        div(class='recommend-feed' ng-repeat='recommendFeed in recommendFeeds' ng-click='insertSeedFeed({{recommendFeed}})' on-hold='openPage({{recommendFeed}})')
+          img(src='{{recommendFeed.image}}')
+          div(class='title') {{recommendFeed.title}}

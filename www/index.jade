@@ -1,0 +1,28 @@
+doctype html
+html
+  head
+    meta(charset='utf-8')
+    meta(name='viewport', content='initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width')
+    meta(name='format-detection', content='telephone=no')
+
+    title
+
+    // CSS
+    link(href='lib/ionic/css/ionic.css', rel='stylesheet')
+    link(href='lib/swiper/dist/css/swiper.min.css', rel='stylesheet')
+    link(href='css/style.css', rel='stylesheet')
+
+    // ionic/angularjs js
+    script(src='lib/ionic/js/ionic.bundle.js')
+    // iOS9のUIWebView対策
+    script(src='lib/angular-ios9-uiwebview-patch/angular-ios9-uiwebview-patch.js')
+  
+    //- Swiperをインクルード
+    script(src='lib/swiper/dist/js/swiper.js')
+    script(src='lib/angular-swiper/dist/angular-swiper.js')
+    
+    script(src='cordova.js')
+    script(src='js/application.js')
+
+  body(ng-app='stream')
+    ion-nav-view
