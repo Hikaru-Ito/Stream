@@ -5,6 +5,7 @@ angular.module('stream.controllers.main', [])
   $scope.recommendFeeds = []
   $scope.seedFeeds = []
   $scope.seedFeedsSwiper
+  $scope.autoplaying = false
 
   # SeedFeedsを取得する
   $scope.initSeedFeed = ->
@@ -34,6 +35,17 @@ angular.module('stream.controllers.main', [])
         $scope.getRecommendFeeds $scope.seedFeeds[swiper.activeIndex]
         $ionicScrollDelegate.scrollTop()
         $scope.seedFeedsSwiper.update true
+
+  # 自動再生スタート
+  $scope.seedFeedsAutoPlayStart = ->
+    $scope.seedFeedsSwiper.params.autoplay = 2000
+    $scope.seedFeedsSwiper.startAutoplay()
+    $scope.autoplaying = true
+
+  # 自動再生ストップ
+  $scope.seedFeedsAutoPlayStop = ->
+    $scope.seedFeedsSwiper.stopAutoplay()
+    $scope.autoplaying = false
 
   # 推薦記事の取得
   $scope.getRecommendFeeds = (feed) ->

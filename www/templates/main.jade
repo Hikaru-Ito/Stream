@@ -1,8 +1,11 @@
 ion-view
   
   ion-header-bar(class='bar-light')
+    button(class='button button-icon icon ion-ios-play' ng-click='seedFeedsAutoPlayStart()' ng-hide='autoplaying')
+    button(class='button button-icon icon ion-ios-pause' ng-click='seedFeedsAutoPlayStop()' ng-show='autoplaying')
     h1(class='title') Stream
     button(class='button button-icon icon ion-ios-refresh-empty' ng-click='initSeedFeed()')
+
     
   
   ion-content(scroll='false')
