@@ -11,3 +11,12 @@ angular.module('stream.directives.endrepeat', [])
           scope.$emit 'ngRepeatFinished'
   }
 ]
+.directive 'htmlData', ($compile, $parse) ->
+  {
+    restrict: 'C'
+    link: (scope, element, attr) ->
+      scope.$watch attr.content, ->
+        element.html $parse(attr.content)(scope)
+        $compile(element.contents()) scope
+      , true
+  }

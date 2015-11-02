@@ -3,6 +3,16 @@
   height: 100%;
 }
 $topSlider_height: 200px;
+.processing_time_toast {
+  position: fixed;
+  bottom:8px;
+  left:8px;
+  background:rgba(0,0,0,0.8);
+  color:#fff;
+  border-radius: 4px;
+  padding:8px 16px;
+  -webkit-animation-duration: 0.4s;
+}
 #topSlider {
   height: $topSlider_height;
   .seed-feed {
@@ -43,6 +53,7 @@ $topSlider_height: 200px;
       width: 100%;
       height: 96px;
       border-bottom: 1px solid #dedede;
+      -webkit-animation-duration: 0.4s;
       img {
         display: block;
         position: absolute;
@@ -65,5 +76,39 @@ $topSlider_height: 200px;
         color:#444;
       }
     }
+  }
+}
+#stock_icons {
+  position: fixed;
+  bottom:0;
+  right: 0;
+  width: 100%;
+  height: 52px;
+  padding: 0 4px 4px 4px;
+  z-index: 2;
+  &:after {
+    content: '';
+    display: block;
+    clear: both;
+  }
+  .stock_icon {
+    width: 48px;
+    height: 48px;
+    content:'';
+    border-radius: 50%;
+    border: 2px solid #fff;
+    box-shadow: 0 0 2px #333;
+    margin-right:4px;
+    float:left;
+  }
+}
+.feedViewContent {
+  padding:8px;
+  font-size: 95%;
+  img {
+    display: block;
+    margin:8px auto;
+    max-width: 90%;
+    height: auto;
   }
 }

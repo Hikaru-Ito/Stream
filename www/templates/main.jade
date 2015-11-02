@@ -19,6 +19,11 @@ ion-view
       
     ion-scroll(direction='y' id='middleScrollView' on-swipe-left='seedFeedNext()' on-swipe-right='seedFeedPrev()')
       div(class='feeds')
-        div(class='recommend-feed' ng-repeat='recommendFeed in recommendFeeds' ng-click='insertSeedFeed({{recommendFeed}})' on-hold='openPage({{recommendFeed}})')
+        div(class='recommend-feed animated fadeIn' ng-repeat='recommendFeed in recommendFeeds' ng-click='insertSeedFeed({{recommendFeed}})' on-hold='stockFeed({{recommendFeed}})')
           img(src='{{recommendFeed.image}}')
           div(class='title') {{recommendFeed.title}}
+    div(class='processing_time_toast') 推薦: {{recommend_processing_time}}ms
+
+    ion-scroll(id='stock_icons' direction='x')
+      div(class='stock_icon animated bounceIn' ng-repeat='stockFeed in stockFeeds' ng-click='openStockFeed({{stockFeed.id}})' style='background:url({{stockFeed.image}}) center center no-repeat; background-size:cover;')    
+      //- div(class='stock_icon animated fadeIn' ng-repeat='stock_icon in stock_icons' style='background:url({{stock_icon.image}}) center center no-repeat; background-size:cover;')

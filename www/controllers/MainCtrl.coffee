@@ -1,11 +1,13 @@
 angular.module('stream.controllers.main', [])
 
-.controller 'MainCtrl', ($scope, $timeout, $ionicScrollDelegate, $ionicLoading, Feed) ->
+.controller 'MainCtrl', ($scope, $timeout, $ionicScrollDelegate, $ionicLoading, $ionicModal, Feed) ->
 
   $scope.recommendFeeds = []
   $scope.seedFeeds = []
   $scope.seedFeedsSwiper
   $scope.autoplaying = false
+  $scope.stockFeeds = []
+  $scope.selectedStockFeed = []
 
   # SeedFeedsを取得する
   $scope.initSeedFeed = ->
@@ -46,6 +48,38 @@ angular.module('stream.controllers.main', [])
   $scope.seedFeedsAutoPlayStop = ->
     $scope.seedFeedsSwiper.stopAutoplay()
     $scope.autoplaying = false
+
+  # Feedストック
+  $scope.stockFeed = (feed) ->
+    $scope.stockFeeds.unshift feed
+    Feed.loadStockReadability(feed).then (data) ->
+      console.log '読み込み完了'
+    , (error) ->
+      console.log '読み込み失敗'
+
+  # SeedFeedViewの定義
+  $ionicModal.fromTemplateUrl 'templates/stock-feed-view.html',
+    scope: $scope
+    animation: 'slide-in-up'
+  .then (modal) ->
+    $scope.modal = modal
+
+  # StockされているFeedを表示
+  $scope.openStockFeed = (feed_id) ->
+    $scope.selectedStockFeed = Feed.getStockContent feed_id
+    console.log feed_id
+    $scope.modal.show()
+    $scope.stockFeeds.some (v, i) ->
+      if v.id is feed_id
+        $scope.stockFeeds.splice i,1
+    Feed.deleteStockContent feed_id
+
+  # StockFeedViewの操作
+  $scope.openModal = ->
+    $scope.modal.show()
+
+  $scope.closeModal = ->
+    $scope.modal.hide()
 
   # 推薦記事の取得
   $scope.getRecommendFeeds = (feed) ->
