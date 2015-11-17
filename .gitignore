@@ -11,3 +11,4 @@ www/css/
 npm-debug.log
 zipalign
 .editorconfig
+*.apk
